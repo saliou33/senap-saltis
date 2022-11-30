@@ -1,0 +1,9 @@
+.main-bg {
+  background: linear-gradient(287.15deg, #77d19d 0%, #fac3c3 100%);
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-links {
+    display: flex;
+  }
+}

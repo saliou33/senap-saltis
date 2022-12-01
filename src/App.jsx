@@ -1,11 +1,12 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar } from './components';
 import Paths from './assets/paths.png';
-import './App.css';
 import Home from './pages/Home';
+import Info from './pages/Info';
 import Contact from './pages/Contact';
 import Model from './pages/Model';
+import './App.css';
 
 const App = () => {
   return (
@@ -15,8 +16,9 @@ const App = () => {
        <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/model" element={<Model />} />
-          <Route path="*" element= {<Home />} />
+          <Route path="/outil" element={<Model />} />
+          <Route path="/info" element={<Model />} />
+          <Route path="*" element= {<Navigate to="/home"/>} />
        </Routes>
        </div>
 

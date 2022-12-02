@@ -36,9 +36,8 @@ const Model = () => {
 
     const code  = parseInt(data?.msg);
     if(isFinite(code)) {
-      setPred(code - 1);
+      setPred(code- 1);
       setShow(true);
-      console.log(pred);
     } else {
       alert(data?.msg);
     }

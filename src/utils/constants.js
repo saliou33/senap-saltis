@@ -56,7 +56,7 @@ export const cases = [
     cons: 'Respecter le code de la route et faites attention à votre environnement.',
   },
   {
-    msg: 'Risque Graqve',
+    msg: 'Risque Grave',
     image: Serious,
     cons: 'Prenez les dispositions responsables nécessaire pour le trajet, et ne pas être trop distrait.',
   },

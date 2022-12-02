@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Mapbox } from '../components';
-import { InputGroup } from '../components';
-import { apiUrl, predict } from '../api/api';
+import { Mapbox, InputGroup, Modal } from '../components';
+import { predict } from '../api/api';
+import { fields, cases } from '../utils/constants'
 
-const fields = [ ['Age du Conducteur', 'age_of_driver'], ['Age du Véhicule', 'age_of_vehicle'], ['Capacité Moteur Véhicule', 'engine_capacity_cc'], ['Type du véhicule', 'vehicle_type' ,['Vélo', 'Moto 50cc', 'Moto 50cc', 'Moto 50-125cc', 'Moto 125-500cc', 'Moto +500cc', 'Taxi', 'Voirture', 'Minibus', 'Bus', 'Tram', 'Camion', 'Moto Electrique']], ['Jour', 'day_of_week',['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']], ['Conditon Météréologique','weather_conditions', ['Normal - Sans Vent', 'Pluvieux - Sans Vent', 'Neigeux', 'Normal - Avec Vent', 'Pluvieux - Avec Vent', 'Neige Avec Vent', 'Brouillard']], ['Lumiére', 'light_conditions' ,['Jour', 'Nuit Avec Lumiere', 'Nuit Sans Lumiere', 'Sombre']], ['Condition de route', 'road_surface_conditions', ['Sec', 'Mouillé', 'Neige', 'Glace', 'Brouillard', 'Argile']], ['Genre', 'sex_of_driver', ['M', 'F']], ['Limite Vitesse', 'speed_limit']]
 
 const Model = () => {
-
   const [latitute, setLatitute] = useState('')
   const [longitude, setLongitude] = useState('')
-  const [show, setShow] = useState(false)
+  const [pred, setPred] = useState(0);
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState('');
 
   const handleMapClick = (e)  => {
     setLatitute(e.lngLat.lat)
@@ -27,19 +26,36 @@ const Model = () => {
     return res;
   }
 
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    const values = fields.map(v => ({ [v[1]] : e.target.elements[v[1]].value}))
-    const data = Object.assign({}, {latitude: latitute, longitude: longitude}, ...values)
+    let values = fields.map(v => ({ [v[1]] : e.target.elements[v[1]].value}))
+    values = Object.assign({}, {latitude: latitute, longitude: longitude}, ...values)
 
-    const result = predict(convertIntObj(data))
-    console.log(result);
-    return false;
+    const res = await predict(convertIntObj(values))
+    const data = await res.json();
+
+    const code  = parseInt(data?.msg);
+    if(isFinite(code)) {
+      setPred(code - 1);
+      setShow(true);
+      console.log(pred);
+    } else {
+      alert(data?.msg);
+    }
   }
 
   return (
     <div className='relative z-20 flex flex-col font-montserrat p-16 justify-between gap-8 text-center'>
+      <Modal show={show} extra='flex flex-col gap-4 items-center'>
+        <span className="text-red-700 text-xl" onClick={() => setShow(false)}>X</span>
+
+        <h3 className='font-montserrat text-xl font-semibold'>{cases[pred].msg}</h3>
+        <img src={cases[pred].image} className="w-10 cursor-pointer" alt={cases[pred].msg} />
+        <p>
+          {cases[pred].cons}
+        </p>
+      </Modal>
+
       <h3 className='font-[700] text-[2.5rem] uppercase text-grayup'>Faire une Prédiction</h3>
       <p>
         Le modéle permet de classer un éventuel accident en 3 catégories

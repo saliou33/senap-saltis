@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Mapbox } from '../components';
 import { InputGroup } from '../components';
-import { predict } from '../api/api';
+import { apiUrl, predict } from '../api/api';
 
 const fields = [ ['Age du Conducteur', 'age_of_driver'], ['Age du Véhicule', 'age_of_vehicle'], ['Capacité Moteur Véhicule', 'engine_capacity_cc'], ['Type du véhicule', 'vehicle_type' ,['Vélo', 'Moto 50cc', 'Moto 50cc', 'Moto 50-125cc', 'Moto 125-500cc', 'Moto +500cc', 'Taxi', 'Voirture', 'Minibus', 'Bus', 'Tram', 'Camion', 'Moto Electrique']], ['Jour', 'day_of_week',['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']], ['Conditon Météréologique','weather_conditions', ['Normal - Sans Vent', 'Pluvieux - Sans Vent', 'Neigeux', 'Normal - Avec Vent', 'Pluvieux - Avec Vent', 'Neige Avec Vent', 'Brouillard']], ['Lumiére', 'light_conditions' ,['Jour', 'Nuit Avec Lumiere', 'Nuit Sans Lumiere', 'Sombre']], ['Condition de route', 'road_surface_conditions', ['Sec', 'Mouillé', 'Neige', 'Glace', 'Brouillard', 'Argile']], ['Genre', 'sex_of_driver', ['M', 'F']], ['Limite Vitesse', 'speed_limit']]
 
@@ -33,7 +33,8 @@ const Model = () => {
     const values = fields.map(v => ({ [v[1]] : e.target.elements[v[1]].value}))
     const data = Object.assign({}, {latitude: latitute, longitude: longitude}, ...values)
 
-    console.log(convertIntObj(data))
+    const result = predict(convertIntObj(data))
+    console.log(result);
     return false;
   }
 

@@ -13,13 +13,13 @@ const App = () => {
     <div className='relative flex flex-col min-h-screen gap-0 overflow-hidden font-[400]'>
        <Navbar/>
        <div className='main-bg rounded-t-[2.5rem] flex-1'>
-       <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/outil" element={<Model />} />
-          <Route path="/info" element={<Model />} />
-          <Route path="*" element= {<Navigate to="/home"/>} />
-       </Routes>
+        <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/outil" element={<Model />} />
+            <Route path="/info" element={<Model />} />
+            <Route path="*" element= {<Navigate to="/home"/>} />
+        </Routes>
        </div>
 
        <img src={Paths} alt="paths"  className='absolute -top-10 left-[10%] z-10' />
@@ -27,4 +27,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

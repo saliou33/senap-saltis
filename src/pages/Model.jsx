@@ -44,7 +44,7 @@ const Model = () => {
   }
 
   return (
-    <div className='relative z-20 flex flex-col font-montserrat p-16 justify-between gap-8 text-center'>
+    <div className='relative z-20 flex flex-col font-montserrat xs:px-4 xs:py-10  md:p-16 justify-between gap-8 text-center'>
       <Modal show={show} extra='flex flex-col gap-4 items-center'>
         <span className="text-red-700 text-xl" onClick={() => setShow(false)}>X</span>
 
@@ -68,7 +68,7 @@ const Model = () => {
         <h3 className='font-[700] text-[2rem] uppercase text-graydown'>Formulaire</h3>
 
         <form 
-          className='bg-gray-50 p-10 max-w-[40rem] w-[70%] bg-opacity-50 rounded-xl flex flex-col gap-6 text-left'
+          className='bg-gray-50 p-10 max-w-[40rem] xs:w-full md:w-[80%] bg-opacity-50 rounded-xl flex flex-col gap-6 text-left'
           onSubmit={handleSubmit}
         >
            <InputGroup key='latitude' label='latitude' name='latitude' value={latitute} handleChange={(e) => setLatitute(e.target.value)}/>

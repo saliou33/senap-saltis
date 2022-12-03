@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <div className='flex flex-col gap-6 items-center p-10 relative z-20'>
        <h1 className='font-[700] text-[2rem] uppercase text-grayup'>CONTACT</h1>
-       <form onSubmit={(e) => {e.preventDefault; alert('Messsage Envoyé avec Succés')}}
+       <form onSubmit={(e) => {e.preventDefault(); alert('Messsage Envoyé avec Succés')}}
           className='bg-gray-50 p-10 max-w-[40rem] w-[70%] bg-opacity-50 rounded-xl flex flex-col gap-6 text-left'
         >
           <h3 className='text-center'>Vous pouvez nous contacter à travers ce formulaire 😇</h3>

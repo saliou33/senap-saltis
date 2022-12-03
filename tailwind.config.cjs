@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-const defaulTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
+
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -14,11 +15,15 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        roboto: ['"Roboto"', ...defaulTheme.fontFamily.sans],
-        montserrat: ['"MontSerrat"', ...defaulTheme.fontFamily.sans],
+        roboto: ['"Roboto"', ...defaultTheme.fontFamily.sans],
+        montserrat: ['"MontSerrat"', ...defaultTheme.fontFamily.sans],
       },
+    },
+    screens: {
+      xs: '475px',
+      ...defaultTheme.screens,
     },
   },
 
-  plugins: [],
+  plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
 };

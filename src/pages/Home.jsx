@@ -5,7 +5,7 @@ import Accident from '../assets/accident.png';
 
 const Home = () => {
   return (
-    <div className='relative z-20 flex font-montserrat px-16 py-32 justify-between'>
+    <div className='relative z-20 flex font-montserrat px-16 py-32 justify-between '>
       <div>
         <h3 className='text-white font-roboto font-bold text-[2.5rem] uppercase'>SEN ~ Accident Prediction</h3>
         <h1 className=' uppercase text-grayup'>
@@ -14,7 +14,7 @@ const Home = () => {
         </h1>
 
         <p className='w-[30rem] text-grayup'>
-        SENAP est basé sur modéle d’intelligence Artificielle qui permet de savoir la gravité d’un éventuel accident. 
+        SENAP est basé sur un modéle d’intelligence Artificielle qui permet de savoir la gravité d’un éventuel accident. 
         </p> 
 
         <NavLink to='/outil' className='rounded-full px-6 py-3 bg-white flex items-center justify-between gap-6 w-[10rem] font-bold uppercase text-primary mt-8 hover:text-secondary'> 

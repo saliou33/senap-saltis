@@ -58,7 +58,7 @@ const Model = () => {
       <h3 className='font-[700] text-[2.5rem] uppercase text-grayup'>Faire une Prédiction</h3>
       <p>
         Le modéle permet de classer un éventuel accident en 3 catégories<br/>
-        Clicker sur la carte pour choisir votre destination.
+        Cliquer sur la carte pour choisir votre destination.
       </p>
       <div>
         <Mapbox handleClick={handleMapClick} />
